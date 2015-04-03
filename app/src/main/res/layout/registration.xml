@@ -102,13 +102,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Ваше имя"
         android:ems="10"
         android:id="@+id/name"
         android:layout_below="@+id/gender"
         android:layout_alignLeft="@+id/gender"
         android:layout_alignStart="@+id/gender"
         android:layout_alignRight="@+id/gender"
-        android:layout_alignEnd="@+id/gender" />
+        android:layout_alignEnd="@+id/gender"
+        android:hint="Ваше имя" />
 
 </RelativeLayout>

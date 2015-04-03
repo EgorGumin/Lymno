@@ -30,7 +30,7 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         myText = (EditText) findViewById(R.id.editText);
-        myText.setText("api/users/registration?login=11&password=kool&nickname=bdm&gender=false");
+        myText.setText("api/users/registration?login=11&password=kool&nicknameEdit=bdm&gender=false");
 
         send = (Button) findViewById(R.id.button);
         send.setText("Send");
@@ -72,7 +72,7 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
 
             case R.id.http_btn:
                 http_btn.setClickable(false);
-                String allQuery = Request.serverIP + "api/users/registration?login=Material4&password=kool&nickname=MAt&gender=false";
+                String allQuery = Request.serverIP + "api/users/registration?login=Material4&password=kool&nicknameEdit=MAt&gender=false";
                 myText.setText(allQuery);
                 Toast.makeText(this, allQuery, Toast.LENGTH_LONG).show();
                 new Register().execute(allQuery);

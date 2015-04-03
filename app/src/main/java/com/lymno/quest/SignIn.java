@@ -72,7 +72,7 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
                 result = dataJsonObj.getString("Result");
                 method = dataJsonObj.getString("Function");
 
-                //email_edit.setText(method + result);
+                //emailEdit.setText(method + result);
                 if ("entrance Success".equals(method +" "+ result)) {
                     //Intent intent = new Intent(getBaseContext(), Notifications.class);
                     //startActivity(intent);
