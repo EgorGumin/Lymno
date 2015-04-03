@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/greeting">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добро пожаловать! Войдите или зарегистрируйтесь, чтобы начать проходить квесты!"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Войти"
+        android:id="@+id/goToSign"
+        android:minWidth="200dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/goToReg"
+        android:layout_alignStart="@+id/goToReg"
+        android:layout_marginTop="111dp"
+        android:minHeight="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Зарегистрироваться"
+        android:id="@+id/goToReg"
+        android:minWidth="200dp"
+        android:layout_below="@+id/goToSign"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:minHeight="50dp" />
+</RelativeLayout>
