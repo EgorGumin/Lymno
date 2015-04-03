@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:inputType="textEmailAddress"
+        android:hint="e-mail"
+        android:textSize="20sp"
+        android:id="@+id/reg_email"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Зарегистрироваться"
+        android:id="@+id/reg_btn"
+        android:longClickable="true"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/gender"
+        android:layout_alignStart="@+id/gender"
+        android:layout_marginBottom="35dp"
+        android:layout_alignRight="@+id/name"
+        android:layout_alignEnd="@+id/name" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/reg_password"
+        android:hint="Пароль"
+        android:textSize="20sp"
+        android:layout_below="@+id/reg_email"
+        android:layout_alignLeft="@+id/reg_email"
+        android:layout_alignStart="@+id/reg_email"
+        android:layout_marginTop="15dp"
+        android:layout_alignRight="@+id/reg_email"
+        android:layout_alignEnd="@+id/reg_email" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/confirm_password"
+        android:hint="Подтвердите пароль"
+        android:textSize="20sp"
+        android:layout_below="@+id/reg_password"
+        android:layout_alignLeft="@+id/reg_password"
+        android:layout_alignStart="@+id/reg_password"
+        android:layout_alignRight="@+id/reg_password"
+        android:layout_alignEnd="@+id/reg_password"
+        android:layout_marginTop="15dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gender"
+        android:layout_below="@+id/confirm_password"
+        android:layout_alignLeft="@+id/confirm_password"
+        android:layout_alignStart="@+id/confirm_password"
+        android:layout_alignRight="@+id/confirm_password"
+        android:layout_alignEnd="@+id/confirm_password">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ж"
+            android:id="@+id/female"
+            android:layout_below="@+id/confirm_password"
+            android:layout_toLeftOf="@+id/gender"
+            android:layout_toStartOf="@+id/gender"
+            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_gravity="center_horizontal" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="М"
+            android:id="@+id/male"
+            android:checked="false"
+            android:layout_below="@+id/confirm_password"
+            android:layout_toLeftOf="@+id/female"
+            android:layout_toStartOf="@+id/female"
+            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_gravity="center_horizontal" />
+
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Ваше имя"
+        android:ems="10"
+        android:id="@+id/name"
+        android:layout_below="@+id/gender"
+        android:layout_alignLeft="@+id/gender"
+        android:layout_alignStart="@+id/gender"
+        android:layout_alignRight="@+id/gender"
+        android:layout_alignEnd="@+id/gender" />
+
+</RelativeLayout>
