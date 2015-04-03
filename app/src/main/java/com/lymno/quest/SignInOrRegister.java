@@ -6,9 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by Colored on 01.04.2015.
- */
 public class SignInOrRegister extends ActionBarActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +13,8 @@ public class SignInOrRegister extends ActionBarActivity implements View.OnClickL
         setContentView(R.layout.sign_in_or_register);
         Button goToSign = (Button) findViewById(R.id.goToSign);
         goToSign.setOnClickListener(this);
+        Button goToReg = (Button) findViewById(R.id.goToReg);
+        goToReg.setOnClickListener(this);
     }
 
     @Override
@@ -25,15 +24,12 @@ public class SignInOrRegister extends ActionBarActivity implements View.OnClickL
                 Intent intent = new Intent(this, SignIn.class);
                 startActivity(intent);
                 break;
-            /*
-            case R.id.http_btn:
-                http_btn.setClickable(false);
-                String allQuery = Request.serverIP + "api/users/registration?login=Material4&password=kool&nickname=MAt&gender=false";
-                myText.setText(allQuery);
-                Toast.makeText(this, allQuery, Toast.LENGTH_LONG).show();
-                new Register().execute(allQuery);
+
+            case R.id.goToReg:
+                Intent regIntent = new Intent(this, Registration.class);
+                startActivity(regIntent);
                 break;
-            */
+
             default:
                 break;
         }
