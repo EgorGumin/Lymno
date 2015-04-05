@@ -59,7 +59,6 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
                 llMain.removeAllViews();
                 Toast.makeText(this, "Удалено", Toast.LENGTH_SHORT).show();
                 break;
-
         }
     }
 
