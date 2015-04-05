@@ -1,5 +1,6 @@
 package com.lymno.quest;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -89,9 +90,8 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
                 result = dataJsonObj.getString("Result");
                 method = dataJsonObj.getString("Function");
                 if ("registration Success".equals(method +" "+ result)) {
-                    //Intent intent = new Intent(getBaseContext(), Notifications.class);
-                    //startActivity(intent);
-                    Toast.makeText(getBaseContext(), "NORMAS", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), QuestList.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(getBaseContext(), "Такой логин уже занят или произошла ошибка.", Toast.LENGTH_LONG).show();

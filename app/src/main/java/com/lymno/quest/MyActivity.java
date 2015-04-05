@@ -30,7 +30,7 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         myText = (EditText) findViewById(R.id.editText);
-        myText.setText("api/users/registration?login=11&password=kool&nicknameEdit=bdm&gender=false");
+        myText.setText("home/api/gui/quest/all");
 
         send = (Button) findViewById(R.id.button);
         send.setText("Send");

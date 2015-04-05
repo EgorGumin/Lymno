@@ -74,9 +74,8 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
 
                 //emailEdit.setText(method + result);
                 if ("entrance Success".equals(method +" "+ result)) {
-                    //Intent intent = new Intent(getBaseContext(), Notifications.class);
-                    //startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Успех.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), QuestList.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(getBaseContext(), "Неверный пароль или ошибка.", Toast.LENGTH_LONG).show();
