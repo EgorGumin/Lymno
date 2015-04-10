@@ -1,5 +1,6 @@
 package com.lymno.quest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,9 +29,10 @@ import java.util.List;
  * Created by Colored on 05.04.2015.
  */
 public class QuestList extends ActionBarActivity implements View.OnClickListener{
-    LinearLayout llMain;
+    //LinearLayout llMain;
     private static ArrayList<String> questData = new ArrayList<>();
     CardsAdapter mAdapter;
+    Context context;
     Button btnCreate;
     Button btnClear;
 
@@ -50,7 +52,7 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
         // 1. get a reference to recyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_list);
         // 2. set layoutManger
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         // 3. create an adapter
         mAdapter = new CardsAdapter(questData);
         // 4. set adapter

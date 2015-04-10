@@ -1,5 +1,8 @@
 package com.lymno.quest;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,15 +52,23 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
     }
 
     // inner class to hold a reference to each item of RecyclerView
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView txtViewTitle;
-        public ImageView imgViewIcon;
+        //public ImageView imgViewIcon;
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.recycler_item_title);
             //imgViewIcon = (ImageView) itemLayoutView.findViewById(R.id.item_icon);
+            itemLayoutView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Context context = view.getContext();
+            Intent quest_info_intent = new Intent(context, QuestInfo.class);
+            context.startActivity(quest_info_intent);
         }
     }
 

@@ -8,7 +8,9 @@
     android:layout_width="fill_parent"
     android:layout_height="100dp"
     card_view:cardCornerRadius="5dp"
-    card_view:cardElevation="2dp">
+    card_view:cardElevation="2dp"
+    android.focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
         <TextView
             android:id="@+id/recycler_item_title"
            android:layout_weight="1"
