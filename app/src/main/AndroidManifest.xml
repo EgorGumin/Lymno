@@ -46,6 +46,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lymno.quest.QuestList" />
         </activity>
+        <activity
+            android:name=".StageQuestion"
+            android:label="@string/title_activity_stage_question" >
+        </activity>
     </application>
 
 </manifest>
