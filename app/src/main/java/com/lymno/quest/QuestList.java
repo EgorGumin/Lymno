@@ -1,19 +1,15 @@
 package com.lymno.quest;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,16 +17,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by Colored on 05.04.2015.
  */
 public class QuestList extends ActionBarActivity implements View.OnClickListener{
     //LinearLayout llMain;
-    private static ArrayList<String> questData = new ArrayList<>();
+    private static ArrayList<Quest> quests = new ArrayList<>();
     CardsAdapter mAdapter;
     Context context;
     Button btnCreate;
@@ -54,7 +47,7 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         // 3. create an adapter
-        mAdapter = new CardsAdapter(questData);
+        mAdapter = new CardsAdapter(quests);
         // 4. set adapter
         recyclerView.setAdapter(mAdapter);
         // 5. set item animator to DefaultAnimator
@@ -65,13 +58,13 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreate:
-                questData.clear();
+                quests.clear();
                 mAdapter.notifyDataSetChanged();
                 new GetQuests().execute(Request.serverIP + "home/api/gui/quest/all");
                 break;
 
             case R.id.btnClear:
-                questData.clear();
+                quests.clear();
                 mAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Flushed list of quests", Toast.LENGTH_SHORT).show();
                 break;
@@ -86,19 +79,28 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
         protected void onPostExecute(String res) {
             try {
                 JSONArray questArray = new JSONArray(res);
-                JSONObject quest;
+                //JSONObject quest;
                 try {
                     for (int i = 0; i < questArray.length(); ++i) {
-                        quest = questArray.getJSONObject(i);
-                        String name = quest.getString("Name");
-                        String description = quest.getString("Description");
-                        //Button btnNew = new Button(getBaseContext());
-                        String str = (name + "\n(" + description + ").");
-                        //llMain.addView(btnNew);
-                        questData.add(str);
-                        mAdapter.notifyItemInserted(questData.size() - 1);
-                    }
+                        JSONObject questJSON = questArray.getJSONObject(i);
+                        final int id = questJSON.getInt("Id");
+                        final String name = questJSON.getString("Name");
+                        final String description = questJSON.getString("Description");
+                        final int    authorId = questJSON.getInt("AuthorId");
+                        final int    startTime = questJSON.getInt("StartTime");
+                        final int    amountStages = questJSON.getInt("AmountStages");
+                        final double x = questJSON.getDouble("X");
+                        final double y = questJSON.getDouble("Y");
+                        final double length = questJSON.getDouble("Length");
+                        final int    averageTime = questJSON.getInt("AverageTime");
 
+                        Quest quest = new Quest(id, name, description, authorId, startTime,
+                                amountStages, x, y, length, averageTime);
+                        quests.add(quest);
+
+                        mAdapter.notifyItemInserted(QuestList.quests.size() - 1);
+                        //mAdapter.notifyDataSetChanged();
+                    }
                 }
                 catch (JSONException ex) {
                     ex.printStackTrace();
