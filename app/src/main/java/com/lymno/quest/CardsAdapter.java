@@ -21,9 +21,9 @@ import java.util.ArrayList;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> {
 
-    private ArrayList<String> questsData; // these are the things we want to display
+    private ArrayList<Quest> questsData; // these are the things we want to display
 
-    public CardsAdapter(ArrayList<String> questsData) {
+    public CardsAdapter(ArrayList<Quest> questsData) {
         this.questsData = questsData;
     }
 
@@ -47,19 +47,24 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
         // - get data from your itemsData at this position
         // - replace the contents of the view with that itemsData
 
-        viewHolder.txtViewTitle.setText(questsData.get(position));
+        Quest questsDataPos = questsData.get(position);
+
+        viewHolder.QuestName.setText(questsDataPos.getName());
+        viewHolder.QuestDescription.setText(questsDataPos.getDescription());
         //viewHolder.imgViewIcon.setImageResource(questsData[position].getImageUrl());
     }
 
     // inner class to hold a reference to each item of RecyclerView
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView txtViewTitle;
+        public TextView QuestName;
+        public TextView QuestDescription;
         //public ImageView imgViewIcon;
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
-            txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.recycler_item_title);
+            QuestName = (TextView) itemLayoutView.findViewById(R.id.recycler_quest_name);
+            QuestDescription = (TextView) itemLayoutView.findViewById(R.id.recycler_quest_description);
             //imgViewIcon = (ImageView) itemLayoutView.findViewById(R.id.item_icon);
             itemLayoutView.setOnClickListener(this);
         }
@@ -68,6 +73,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
         public void onClick(View view) {
             Context context = view.getContext();
             Intent quest_info_intent = new Intent(context, QuestInfo.class);
+            quest_info_intent.putExtra("questId", questsData.get(getAdapterPosition()).getId());
             context.startActivity(quest_info_intent);
         }
     }

@@ -1,21 +1,34 @@
 package com.lymno.quest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
-public class QuestInfo extends ActionBarActivity {
+public class QuestInfo extends ActionBarActivity implements View.OnClickListener {
 
-    public QuestInfo() {};
+    public QuestInfo() {}
+    Button startQuest;
+    EditText tst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
+        int questId = intent.getIntExtra("questId", 0);
         setContentView(R.layout.quest_info);
+
+        startQuest = (Button) findViewById(R.id.button_start_quest);
+        startQuest.setOnClickListener(this);
+
+        tst = (EditText) findViewById(R.id.editText3);
+        tst.setText("tst" + questId);
 
     }
 
@@ -39,5 +52,14 @@ public class QuestInfo extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.button_start_quest) {
+            Context context = view.getContext();
+            Intent stage_intent = new Intent(context, StageQuestion.class);
+            context.startActivity(stage_intent);
+        }
     }
 }
