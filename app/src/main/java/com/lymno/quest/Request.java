@@ -27,6 +27,8 @@ public class Request {
     public static String resultInput = "fstinit";
     //new HttpAsyncTask().execute(query); - вызов
 
+    public static int currentStage = 0;
+
     public static String GET(String url){
         InputStream inputStream = null;
         //String result = "";

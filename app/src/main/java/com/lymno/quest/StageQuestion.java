@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,12 +16,16 @@ import org.json.JSONObject;
 public class StageQuestion extends ActionBarActivity {
 
     private Stage stage;
+    public EditText descriptionS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stage_question);
-        new GetStage().execute(Request.serverIP + "home/api/gui/stage/all");
+        new GetStage().execute(Request.serverIP + "api/stages/getby?QuestId=" + 3 /*stage.getQuestId()*/ +
+                "?Level=" + (Request.currentStage + 1));
+
+        descriptionS = (EditText) findViewById(R.id.editText2);
     }
 
     @Override
@@ -67,6 +73,9 @@ public class StageQuestion extends ActionBarActivity {
 
                         stage = new Stage(id, level, questId, name, description, x, y,
                                 question, answer);
+
+
+                        descriptionS.setText(stage.getDescription());
                     }
                 }
                 catch (JSONException ex) {
