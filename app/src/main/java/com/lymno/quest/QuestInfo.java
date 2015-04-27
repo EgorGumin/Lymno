@@ -16,19 +16,21 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
     public QuestInfo() {}
     Button startQuest;
     EditText tst;
+    int questId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        int questId = intent.getIntExtra("questId", 0);
+        questId = intent.getIntExtra("questId", 0);
         setContentView(R.layout.quest_info);
 
         startQuest = (Button) findViewById(R.id.button_start_quest);
         startQuest.setOnClickListener(this);
 
         tst = (EditText) findViewById(R.id.editText3);
-        tst.setText("tst" + questId);
+        tst.setText("Quest ID = " + questId);
 
     }
 
@@ -59,6 +61,8 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
         if (view.getId() == R.id.button_start_quest) {
             Context context = view.getContext();
             Intent stage_intent = new Intent(context, StageQuestion.class);
+            stage_intent.putExtra("stageLevel", 1);
+            stage_intent.putExtra("questId", questId);
             context.startActivity(stage_intent);
         }
     }

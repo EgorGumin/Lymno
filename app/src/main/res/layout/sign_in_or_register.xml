@@ -23,8 +23,8 @@
         android:id="@+id/goToSign"
         android:minWidth="200dp"
         android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/goToReg"
-        android:layout_alignStart="@+id/goToReg"
+        android:layout_alignLeft="@+id/stageQuestion"
+        android:layout_alignStart="@+id/stageQuestion"
         android:layout_marginTop="111dp"
         android:minHeight="50dp" />
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Зарегистрироваться"
-        android:id="@+id/goToReg"
+        android:id="@+id/stageQuestion"
         android:minWidth="200dp"
         android:layout_below="@+id/goToSign"
         android:layout_centerHorizontal="true"
