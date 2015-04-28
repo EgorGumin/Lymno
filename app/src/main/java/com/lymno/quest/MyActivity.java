@@ -72,10 +72,8 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
 
             case R.id.http_btn:
                 http_btn.setClickable(false);
-                String allQuery = Request.serverIP + "api/users/registration?login=Material4&password=kool&nicknameEdit=MAt&gender=false";
-                myText.setText(allQuery);
-                Toast.makeText(this, allQuery, Toast.LENGTH_LONG).show();
-                new Register().execute(allQuery);
+                Intent goToCards = new Intent(this, QuestList.class);
+                startActivity(goToCards);
                 break;
 
             default:
