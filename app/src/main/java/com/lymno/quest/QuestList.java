@@ -52,6 +52,9 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
         recyclerView.setAdapter(mAdapter);
         // 5. set item animator to DefaultAnimator
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        quests.clear();
+        new GetQuests().execute(Request.serverIP + "home/api/gui/quest/all");
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

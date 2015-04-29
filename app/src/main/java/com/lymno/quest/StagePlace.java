@@ -82,7 +82,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         public void onLocationChanged(Location location) {
             showLocation(location);
             if(location != null){
-                location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
                 distance.setText(String.valueOf(result[0]) + "метров?");
             }
         }

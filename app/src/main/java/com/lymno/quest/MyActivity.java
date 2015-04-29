@@ -74,6 +74,7 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
                 http_btn.setClickable(false);
                 Intent goToCards = new Intent(this, QuestList.class);
                 startActivity(goToCards);
+                http_btn.setClickable(true);
                 break;
 
             default:
