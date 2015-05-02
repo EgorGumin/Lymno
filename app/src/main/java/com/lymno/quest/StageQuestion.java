@@ -3,8 +3,8 @@ package com.lymno.quest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,7 +80,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
                 context.startActivity(place_intent);
             }
             else{
-                questionField.setText(questionField.getText().toString() + "\nНеправильный ответ!");
+                questionField.setText(stage.getQuestion() + "\nНеправильный ответ!");
             }
         }
     }
