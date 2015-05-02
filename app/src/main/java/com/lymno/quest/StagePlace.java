@@ -5,57 +5,64 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v7.app.ActionBarActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
+
 
 
 public class StagePlace extends ActionBarActivity implements View.OnClickListener{
 
-    private LocationManager locationManager;
-    StringBuilder sbGPS = new StringBuilder();
-    StringBuilder sbNet = new StringBuilder();
-
     TextView placeDescription;
-    Button imHere;
-
     TextView tvLocationGPS;
     TextView distance;
     TextView tvImHere;
+    Button imHere;
+
+    private LocationManager locationManager;
+    Location lastGPS;
+    private Stage stage;
     float[] result;
+    float radius = 100;
 
     double X;
     double Y;
-    String stageDescription;
-
     int questId;
     int stageLevel;
+
+    Boolean isInitialized = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stage_place);
         Intent intent = getIntent();
-        questId = intent.getIntExtra("questID", 0);
+        questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);
-        stageDescription = intent.getStringExtra("stageDescription");
-        X = intent.getDoubleExtra("X", 0.);
-        Y = intent.getDoubleExtra("Y", 0.);
+        result = new float [10];
+        result[0] = radius*1000;
+        new GetStage().execute(Request.serverIP + "api/stages/getby?QuestId=" + questId  +
+                "&Level=" + stageLevel);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        result = new float [10];
-        tvLocationGPS = (TextView) findViewById(R.id.tvLocationGPS);
-        distance = (TextView) findViewById(R.id.distance);
 
+        tvLocationGPS =    (TextView) findViewById(R.id.tvLocationGPS);
+        distance =         (TextView) findViewById(R.id.distance);
         placeDescription = (TextView) findViewById(R.id.placeDescription);
-        placeDescription.setText(stageDescription);
-        tvImHere = (TextView) findViewById(R.id.tvImHere);
+        tvImHere =         (TextView) findViewById(R.id.tvImHere);
+
         imHere = (Button) findViewById(R.id.imHere);
         imHere.setOnClickListener(this);
     }
@@ -63,10 +70,11 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+        //Обновляем раз в 10 секунд при изменении положения более чем на 1м.
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                1000 * 10, 10, locationListener);
+                1000 * 10, 1, locationListener);
         locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 1000 * 10, 10,
+                LocationManager.NETWORK_PROVIDER, 1000 * 10, 1,
                 locationListener);
     }
 
@@ -77,14 +85,30 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     }
 
     private LocationListener locationListener = new LocationListener() {
-
         @Override
         public void onLocationChanged(Location location) {
             showLocation(location);
-            if(location != null){
-                Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
-                distance.setText(String.valueOf(result[0]) + "метров?");
+
+            if((location != null) && (isInitialized)){
+                if (location.getProvider().equals(locationManager.GPS_PROVIDER)){
+                    lastGPS = location;
+                    Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                    distance.setText(String.valueOf(result[0]) + "метров?");
+                }
+                if(location.getProvider().equals(locationManager.NETWORK_PROVIDER) ){
+                    if(lastGPS==null){
+                        Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                        distance.setText(String.valueOf(result[0]) + "м. GPS is OFF.");
+                    }
+                    else{
+                        if(((new Date().getTime()) - lastGPS.getTime())/(1000) > 60){
+                            Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                            distance.setText(String.valueOf(result[0]) + "м.\n" + String.valueOf(((new Date().getTime()) - lastGPS.getTime())/1000));
+                        }
+                    }
+                }
             }
+
         }
 
         @Override
@@ -120,18 +144,18 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
                 location.getLatitude(), location.getLongitude());
     }
 
-;
-
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.imHere) {
-            if (result[0] < 100.) {
+            if (result[0] < radius) {
                 tvImHere.setText("Вы на месте!");
                 Context context = view.getContext();
-                Intent place_intent = new Intent(context, StageQuestion.class);
-                place_intent.putExtra("questId", questId);
-                place_intent.putExtra("stageLevel", (stageLevel+1));
-                context.startActivity(place_intent);
+                Intent question_intent = new Intent(context, StageQuestion.class);
+                question_intent.putExtra("questId", questId);
+                question_intent.putExtra("stageLevel", stageLevel);
+                question_intent.putExtra("question", stage.getQuestion());
+                question_intent.putExtra("answer", stage.getAnswer());
+                context.startActivity(question_intent);
             }
             else{
                 tvImHere.setText("До места еще " + String.valueOf(result[0]) + "м.");
@@ -140,13 +164,53 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     }
 
 
+    public class GetStage extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Request.GET(urls[0]);
+        }
+        protected void onPostExecute(String res) {
+            if (res.equals("[]")){
+                //СРОЧНО ПЕРЕПИСАТЬ
+                placeDescription.setText("Больше этапов нет! Наверное, вы победили!");
+                imHere.setClickable(false);
+            }
+            else{
+                try {
+                    JSONArray stageArray = new JSONArray(res);
+                    try {
+                        for (int i = 0; i < stageArray.length(); ++i) {
+                            JSONObject stageJSON = stageArray.getJSONObject(i);
+                            final int id = stageJSON.getInt("Id");
+                            final int level = stageJSON.getInt("Level");
+                            final int questId = stageJSON.getInt("QuestId");
+                            final String name = stageJSON.getString("Name");
+                            final String description = stageJSON.getString("Description");
+                            final double x = stageJSON.getDouble("X");
+                            final double y = stageJSON.getDouble("Y");
+                            final String question = stageJSON.getString("Question");
+                            final String answer = stageJSON.getString("Answer");
 
+                            stage = new Stage(id, level, questId, name, description, x, y,
+                                    question, answer);
 
+                            X = stage.getX();
+                            Y = stage.getY();
+                            placeDescription.setText(stage.getDescription());
+                            isInitialized = true;
+                            onResume(); //простигосподи
+                        }
+                    }
+                    catch (JSONException ex) {
+                        ex.printStackTrace();
+                    }
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
-
-
-
-
+        }
+    }
 
     //Автосгенерированный код, необязательно для вникания
     @Override
@@ -170,6 +234,4 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

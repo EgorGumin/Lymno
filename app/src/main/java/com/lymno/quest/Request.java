@@ -1,10 +1,11 @@
 package com.lymno.quest;
 
 /**
- * Created by Colored on 01.04.2015.
+ * Created by Gumin Egor on 01.04.2015.
  */
 import android.os.AsyncTask;
 import android.util.Log;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -15,19 +16,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- * Created by Colored Lime on 02.11.2014.
- */
-
 public class Request {
 
-    //TextView result;
     public static String serverIP = "http://simpleas123.azurewebsites.net/"; //217.197.4.107
     public static String result;
     public static String resultInput = "fstinit";
-    //new HttpAsyncTask().execute(query); - вызов
-
-    public static int currentStage = 0;
 
     public static String GET(String url){
         InputStream inputStream = null;

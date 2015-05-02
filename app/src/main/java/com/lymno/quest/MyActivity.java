@@ -1,20 +1,14 @@
 package com.lymno.quest;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
@@ -22,7 +16,6 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
     private EditText myText;
     private Button send;
     Button http_btn;
-    public String lol;
     Button gotosignpage;
 
     @Override
@@ -79,34 +72,6 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
 
             default:
                 break;
-        }
-    }
-
-    public class Register extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            return Request.GET(urls[0]);
-        }
-        protected void onPostExecute(String res) {
-            String method = "";
-            String result = "";
-            try {
-                JSONObject dataJsonObj = new JSONObject(res);
-                result = dataJsonObj.getString("Result");
-                method = dataJsonObj.getString("Function");
-                myText.setText(method + result);
-                if ("registration Success".equals(method +" "+ result)) {
-                    //Intent intent = new Intent(getBaseContext(), Notifications.class);
-                    //startActivity(intent);
-                    Toast.makeText(getBaseContext(), "NORMAS.", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(getBaseContext(), "Такой логин уже занят или произошла ошибка.", Toast.LENGTH_LONG).show();
-                }
-                http_btn.setClickable(true);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 

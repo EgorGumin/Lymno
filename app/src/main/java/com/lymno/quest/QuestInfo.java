@@ -2,8 +2,8 @@ package com.lymno.quest;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 public class QuestInfo extends ActionBarActivity implements View.OnClickListener {
 
-    public QuestInfo() {}
     Button startQuest;
     EditText tst;
     int questId;
@@ -31,9 +30,20 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
 
         tst = (EditText) findViewById(R.id.editText3);
         tst.setText("Quest ID = " + questId);
-
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.button_start_quest) {
+            Context context = view.getContext();
+            Intent stage_intent = new Intent(context, StagePlace.class);
+            stage_intent.putExtra("stageLevel", 1);
+            stage_intent.putExtra("questId", questId);
+            context.startActivity(stage_intent);
+        }
+    }
+
+    //Автосгенерированный код
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -52,18 +62,6 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.button_start_quest) {
-            Context context = view.getContext();
-            Intent stage_intent = new Intent(context, StageQuestion.class);
-            stage_intent.putExtra("stageLevel", 1);
-            stage_intent.putExtra("questId", questId);
-            context.startActivity(stage_intent);
-        }
     }
 }
