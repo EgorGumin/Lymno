@@ -16,6 +16,7 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
     Button startQuest;
     EditText tst;
     int questId;
+    int amountStages;
 
 
     @Override
@@ -23,6 +24,8 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         questId = intent.getIntExtra("questId", 0);
+        amountStages = intent.getIntExtra("amountStages", 0);
+
         setContentView(R.layout.quest_info);
 
         startQuest = (Button) findViewById(R.id.button_start_quest);
@@ -36,10 +39,11 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
     public void onClick(View view) {
         if (view.getId() == R.id.button_start_quest) {
             Context context = view.getContext();
-            Intent stage_intent = new Intent(context, StagePlace.class);
-            stage_intent.putExtra("stageLevel", 1);
-            stage_intent.putExtra("questId", questId);
-            context.startActivity(stage_intent);
+            Intent stagePlaceIntent = new Intent(context, StagePlace.class);
+            stagePlaceIntent.putExtra("stageLevel", 1);
+            stagePlaceIntent.putExtra("questId", questId);
+            stagePlaceIntent.putExtra("amountStages", amountStages);
+            context.startActivity(stagePlaceIntent);
         }
     }
 

@@ -70,9 +70,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
             Context context = view.getContext();
-            Intent quest_info_intent = new Intent(context, QuestInfo.class);
-            quest_info_intent.putExtra("questId", questsData.get(getAdapterPosition()).getId());
-            context.startActivity(quest_info_intent);
+            Intent questInfoIntent = new Intent(context, QuestInfo.class);
+            questInfoIntent.putExtra("questId", questsData.get(getAdapterPosition()).getId());
+            questInfoIntent.putExtra("amountStages", questsData.get(getAdapterPosition()).getAmountStages());
+            context.startActivity(questInfoIntent);
         }
     }
 

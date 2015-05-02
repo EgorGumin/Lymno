@@ -40,6 +40,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     double Y;
     int questId;
     int stageLevel;
+    int amountStages;
 
     Boolean isInitialized = false;
 
@@ -51,6 +52,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         Intent intent = getIntent();
         questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);
+        amountStages = intent.getIntExtra("amountStages", 0);
         result = new float [10];
         result[0] = radius*1000;
         new GetStage().execute(Request.serverIP + "api/stages/getby?QuestId=" + questId  +
@@ -150,12 +152,13 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
             if (result[0] < radius) {
                 tvImHere.setText("Вы на месте!");
                 Context context = view.getContext();
-                Intent question_intent = new Intent(context, StageQuestion.class);
-                question_intent.putExtra("questId", questId);
-                question_intent.putExtra("stageLevel", stageLevel);
-                question_intent.putExtra("question", stage.getQuestion());
-                question_intent.putExtra("answer", stage.getAnswer());
-                context.startActivity(question_intent);
+                Intent stageQuestionIntent = new Intent(context, StageQuestion.class);
+                stageQuestionIntent.putExtra("questId", questId);
+                stageQuestionIntent.putExtra("stageLevel", stageLevel);
+                stageQuestionIntent.putExtra("question", stage.getQuestion());
+                stageQuestionIntent.putExtra("answer", stage.getAnswer());
+                stageQuestionIntent.putExtra("amountStages", amountStages);
+                context.startActivity(stageQuestionIntent);
             }
             else{
                 tvImHere.setText("До места еще " + String.valueOf(result[0]) + "м.");

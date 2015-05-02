@@ -22,6 +22,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
 
     int questId;
     int stageLevel;
+    int amountStages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
         stageLevel = intent.getIntExtra("stageLevel", 0);
         question = intent.getStringExtra("question");
         answer = intent.getStringExtra("answer");
+        amountStages = intent.getIntExtra("amountStages", 0);
 
         toAnswer = (Button) findViewById(R.id.toAnswer);
         toAnswer.setOnClickListener(this);
@@ -44,14 +46,20 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.toAnswer) {
-            if (answer.equals(usersAnswer.getText().toString())){
+            if (answer.equals(usersAnswer.getText().toString())) {
                 stageQuestion.setText(question + "\nВерно!");
-
                 Context context = v.getContext();
-                Intent place_intent = new Intent(context, StagePlace.class);
-                place_intent.putExtra("questId", questId);
-                place_intent.putExtra("stageLevel", stageLevel+1);
-                context.startActivity(place_intent);
+                if (stageLevel == amountStages) {
+                    Intent finishedQuestIntent = new Intent(context, QuestFinished.class);
+                    context.startActivity(finishedQuestIntent);
+                }
+                else{
+                    Intent stagePlaceIntent = new Intent(context, StagePlace.class);
+                    stagePlaceIntent.putExtra("questId", questId);
+                    stagePlaceIntent.putExtra("stageLevel", stageLevel + 1);
+                    stagePlaceIntent.putExtra("amountStages", amountStages);
+                    context.startActivity(stagePlaceIntent);
+                }
             }
             else{
                 stageQuestion.setText(question + "\nНеправильный ответ!");
