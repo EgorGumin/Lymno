@@ -22,14 +22,14 @@ public class QuestFinished extends ActionBarActivity implements View.OnClickList
         info = (TextView) findViewById(R.id.info);
         info.setText("Очень скоро мы будем считать и выводить статистику квестов.");
 
-        sync = (Button) findViewById(R.id.SyncronizeBtn);
+        sync = (Button) findViewById(R.id.sync);
         sync.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.SyncronizeBtn:
+            case R.id.sync:
                 Context context = v.getContext();
                 Intent questListIntent = new Intent(context, QuestList.class);
                 context.startActivity(questListIntent);
