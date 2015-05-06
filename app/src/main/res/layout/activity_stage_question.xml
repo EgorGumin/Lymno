@@ -39,8 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/usersAnswer"
-        android:layout_above="@+id/toAnswer"
-        android:layout_alignRight="@+id/toAnswer"
-        android:layout_alignEnd="@+id/toAnswer" />
+        android:layout_above="@+id/toAnswer" />
 
 </RelativeLayout>

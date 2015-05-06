@@ -21,4 +21,6 @@
     <string name="sync">Синхронизировать</string>
     <string name="imHere">Я здесь</string>
     <string name="toAnswer">Ответить</string>
+
+    <string name="textView">Добро пожаловать! Войдите или зарегистрируйтесь, чтобы начать проходить квесты!</string>
 </resources>

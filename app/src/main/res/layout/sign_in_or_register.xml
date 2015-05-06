@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/greeting">
+    android:id="@+id/greeting"
+    android:background="@mipmap/fontmaybe">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Добро пожаловать! Войдите или зарегистрируйтесь, чтобы начать проходить квесты!"
+        android:text="@string/textView"
+        android:textColor="@color/white"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_marginTop="80dp"
@@ -19,23 +21,31 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Войти"
+        android:text="@string/goToSign"
+        android:textColor="@color/white"
         android:id="@+id/goToSign"
         android:minWidth="200dp"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/stageQuestion"
         android:layout_alignStart="@+id/stageQuestion"
         android:layout_marginTop="111dp"
-        android:minHeight="50dp"  />
+        android:minHeight="50dp"
+        android:background="@mipmap/ghost_frame"
+        android:padding="5dp"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Зарегистрироваться"
+        android:text="@string/stageQuestion"
+        android:textColor="@color/white"
         android:id="@+id/stageQuestion"
         android:minWidth="200dp"
         android:layout_below="@+id/goToSign"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:minHeight="50dp" />
+        android:minHeight="50dp"
+        android:background="@mipmap/ghost_frame"
+        android:padding="5dp"
+        />
 </RelativeLayout>
