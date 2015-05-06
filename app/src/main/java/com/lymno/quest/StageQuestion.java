@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +40,8 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
         toAnswer.setOnClickListener(this);
 
         stageQuestion = (TextView) findViewById(R.id.stageQuestion);
-        stageQuestion.setText(question);
+        stageQuestion.setMovementMethod(new ScrollingMovementMethod());
+        //stageQuestion.setText(question);
         usersAnswer = (EditText) findViewById(R.id.usersAnswer);
     }
 

@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="green">#4caf50</color>
+    <color name="green_button_norm">#66BB6A</color>
+    <color name="green_button_pressed">#388E3C</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="gray">#bdc3c7</color>
     <color name="e6">#e6e6e6</color>
+
+    <color name="borderLow">#999</color>
+    <color name="borderHigh">#DDD</color>
+    <color name="gradientStart">#DDD</color>
+    <color name="gradientEnd">#BBB</color>
+    <color name="text">#999</color>
+    <color name="shadow">#FFFFFF</color>
 </resources>
