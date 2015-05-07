@@ -8,15 +8,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class QuestInfo extends ActionBarActivity implements View.OnClickListener {
 
     Button startQuest;
-    EditText tst;
     int questId;
     int amountStages;
+    String questDescription;
+    double questLength;
+    String questName;
+
+    TextView questDescriptionTV;
+    TextView questLengthTV;
+    TextView questAmountStagesTV;
+
 
 
     @Override
@@ -25,14 +32,23 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
         Intent intent = getIntent();
         questId = intent.getIntExtra("questId", 0);
         amountStages = intent.getIntExtra("amountStages", 0);
+        questDescription = intent.getStringExtra("questDescription");
+        questLength = intent.getDoubleExtra("questLength", 0.);
+        questName = intent.getStringExtra("questName");
 
         setContentView(R.layout.quest_info);
+        getSupportActionBar().setTitle(questName);
 
         startQuest = (Button) findViewById(R.id.button_start_quest);
         startQuest.setOnClickListener(this);
 
-        tst = (EditText) findViewById(R.id.editText3);
-        tst.setText("Quest ID = " + questId);
+        questAmountStagesTV = (TextView) findViewById(R.id.amountStages);
+        questDescriptionTV = (TextView) findViewById(R.id.questDescription);
+        questLengthTV = (TextView) findViewById(R.id.questLength);
+
+        questAmountStagesTV.setText("Количество уровней: " + amountStages);
+        questLengthTV.setText("Оптимальная длина маршрута: " + questLength + "м.");
+        questDescriptionTV.setText("Описание:\n" + questDescription);
     }
 
     @Override

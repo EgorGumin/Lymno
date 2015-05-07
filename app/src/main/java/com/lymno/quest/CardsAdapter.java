@@ -73,6 +73,9 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
             Intent questInfoIntent = new Intent(context, QuestInfo.class);
             questInfoIntent.putExtra("questId", questsData.get(getAdapterPosition()).getId());
             questInfoIntent.putExtra("amountStages", questsData.get(getAdapterPosition()).getAmountStages());
+            questInfoIntent.putExtra("questDescription", questsData.get(getAdapterPosition()).getDescription());
+            questInfoIntent.putExtra("questLength", questsData.get(getAdapterPosition()).getLength());
+            questInfoIntent.putExtra("questName", questsData.get(getAdapterPosition()).getName());
             context.startActivity(questInfoIntent);
         }
     }

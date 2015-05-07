@@ -9,6 +9,7 @@
     android:layout_height="100dp"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="2dp"
+
     android.focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
     <LinearLayout
@@ -21,7 +22,8 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        />
+            android:textStyle="bold"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/recycler_quest_description"
