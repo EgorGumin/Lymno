@@ -34,7 +34,8 @@
     <string name="forgotPass_email">e-mail</string>
     <string name="placeDescription">Description of place</string>
     <string name="info">Result:</string>
-    <string name="stageQuestion">Task: наша задача - добавить как можно более длинный текст для тестирования нашего убогого отображения, тестируем, тестируем, тестируем, тестируем ололо лоло лоло</string>
+    <string name="stageQuestion">Task:</string>
+    <string name="forgot_pass">Forgot password?</string>
 
     <string name="button">Send</string>
     <string name="http_btn">Go to cards</string>
