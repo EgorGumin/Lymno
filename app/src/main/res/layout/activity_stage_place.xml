@@ -50,5 +50,7 @@
         android:id="@+id/imHere"
         android:layout_gravity="center_horizontal"
         android:minHeight="50dp"
-        android:minWidth="200dp" />
+        android:minWidth="200dp"
+        android:background="@drawable/green_button"
+        android:padding="10dp"/>
 </LinearLayout>

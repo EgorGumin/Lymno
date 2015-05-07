@@ -35,6 +35,7 @@
     <string name="placeDescription">Описание места</string>
     <string name="info">Итоги:</string>
     <string name="stageQuestion">Задание:</string>
+    <string name="forgot_pass">Забыли пароль?</string>
 
     <string name="button">Отправить</string>
     <string name="http_btn">К списку квестов</string>

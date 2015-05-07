@@ -2,57 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/login" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:hint="@string/login"
-        android:textSize="20sp"
-        android:background="@drawable/panel_sign_in_top"
-        android:padding="10dp"/>
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password" android:layout_below="@+id/login" android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp" android:selectAllOnFocus="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:hint="@string/password"
-        android:textSize="20sp"
-        android:background="@drawable/panel_sign_in_bot"
-        android:padding="10dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="360dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:id="@+id/signin_panel"
+        >
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/login" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/login"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password" android:layout_below="@+id/login" android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp" android:selectAllOnFocus="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/password"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/signin_button"
-        android:id="@+id/signin_button" android:layout_below="@+id/password"
-        android:layout_marginTop="30dp" android:longClickable="true"
+        android:id="@+id/signin_button"
+        android:longClickable="true"
         android:nestedScrollingEnabled="false"
         android:layout_gravity="center_horizontal"
         android:minHeight="50dp"
         android:minWidth="200dp"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password"
-        android:layout_alignRight="@+id/password"
-        android:layout_alignEnd="@+id/password" />
+        android:layout_marginTop="105dp"
+        android:layout_alignTop="@+id/signin_panel"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Забыли пароль?"
+        android:text="@string/forgot_pass"
         android:id="@+id/forgot_pass"
         android:textSize="20dp"
         android:textColor="#ff5db0ff"
         android:singleLine="false"
         android:phoneNumber="false"
         android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
+        android:paddingBottom="20dp"
+        android:layout_below="@+id/signin_button"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="20dp" />
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>
