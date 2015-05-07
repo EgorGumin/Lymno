@@ -32,12 +32,11 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
 
     private LocationManager locationManager;
     Location lastGPS;
+    Location lastLocation;
     private Stage stage;
     float[] result;
     float radius = 100;
 
-    double X;
-    double Y;
     int questId;
     int stageLevel;
     int amountStages;
@@ -91,21 +90,24 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         public void onLocationChanged(Location location) {
             showLocation(location);
 
-            if((location != null) && (isInitialized)){
+            if(location != null){
                 if (location.getProvider().equals(locationManager.GPS_PROVIDER)){
                     lastGPS = location;
-                    Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
-                    distance.setText(String.valueOf(result[0]) + "метров?");
+                    lastLocation = location;
+                    //Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                    //distance.setText(String.valueOf(result[0]) + "метров?");
                 }
                 if(location.getProvider().equals(locationManager.NETWORK_PROVIDER) ){
                     if(lastGPS==null){
-                        Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
-                        distance.setText(String.valueOf(result[0]) + "м. GPS is OFF.");
+                        //Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                        //distance.setText(String.valueOf(result[0]) + "м. GPS is OFF.");
+                        lastLocation = location;
                     }
                     else{
                         if(((new Date().getTime()) - lastGPS.getTime())/(1000) > 60){
-                            Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
-                            distance.setText(String.valueOf(result[0]) + "м.\n" + String.valueOf(((new Date().getTime()) - lastGPS.getTime())/1000));
+                            //Location.distanceBetween(location.getLatitude(), location.getLongitude(), X, Y, result);
+                            //distance.setText(String.valueOf(result[0]) + "м.\n" + String.valueOf(((new Date().getTime()) - lastGPS.getTime())/1000));
+                            lastLocation = location;
                         }
                     }
                 }
@@ -149,19 +151,9 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.imHere) {
-            if (result[0] < radius) {
-                tvImHere.setText("Вы на месте!");
-                Context context = view.getContext();
-                Intent stageQuestionIntent = new Intent(context, StageQuestion.class);
-                stageQuestionIntent.putExtra("questId", questId);
-                stageQuestionIntent.putExtra("stageLevel", stageLevel);
-                stageQuestionIntent.putExtra("question", stage.getQuestion());
-                stageQuestionIntent.putExtra("answer", stage.getAnswer());
-                stageQuestionIntent.putExtra("amountStages", amountStages);
-                context.startActivity(stageQuestionIntent);
-            }
-            else{
-                tvImHere.setText("До места еще " + String.valueOf(result[0]) + "м.");
+            if (lastLocation != null){
+                new CheckPosition().execute(Request.serverIP + "api/stages/checkPosition?Level="+stage.getLevel()+
+                        "&QuestId="+questId+"&X="+lastLocation.getLatitude()+"&Y="+lastLocation.getLongitude());
             }
        }
     }
@@ -175,7 +167,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         protected void onPostExecute(String res) {
             if (res.equals("[]")){
                 //СРОЧНО ПЕРЕПИСАТЬ
-                placeDescription.setText("Больше этапов нет! Наверное, вы победили!");
+                placeDescription.setText("Больше этапов нет! Наверное, произошла ошибка!");
                 imHere.setClickable(false);
             }
             else{
@@ -189,19 +181,16 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
                             final int questId = stageJSON.getInt("QuestId");
                             final String name = stageJSON.getString("Name");
                             final String description = stageJSON.getString("Description");
-                            final double x = stageJSON.getDouble("X");
-                            final double y = stageJSON.getDouble("Y");
                             final String question = stageJSON.getString("Question");
-                            final String answer = stageJSON.getString("Answer");
 
-                            stage = new Stage(id, level, questId, name, description, x, y,
-                                    question, answer);
+                            stage = new Stage(id, level, questId, name, description,
+                                    question);
 
-                            X = stage.getX();
-                            Y = stage.getY();
+                            //X = stage.getX();
+                            //Y = stage.getY();
                             placeDescription.setText(stage.getDescription());
                             isInitialized = true;
-                            onResume(); //простигосподи
+                            //onResume(); //простигосподи
                         }
                     }
                     catch (JSONException ex) {
@@ -213,6 +202,41 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
             }
 
         }
+    }
+
+    public class CheckPosition extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Request.GET(urls[0]);
+        }
+        protected void onPostExecute(String res) {
+            if (res.equals("[]")){
+                //СРОЧНО ПЕРЕПИСАТЬ
+                placeDescription.setText("Наверное, произошла ошибка!");
+            }
+            else{
+                try {
+                    JSONObject checkResult = new JSONObject(res);
+                    if(checkResult.getString("Result").equals("Success")){
+                        tvImHere.setText("Вы на месте!");
+                        Context context = StagePlace.this;
+                        Intent stageQuestionIntent = new Intent(context, StageQuestion.class);
+                        stageQuestionIntent.putExtra("questId", questId);
+                        stageQuestionIntent.putExtra("stageLevel", stageLevel);
+                        stageQuestionIntent.putExtra("question", stage.getQuestion());
+                        stageQuestionIntent.putExtra("amountStages", amountStages);
+                        context.startActivity(stageQuestionIntent);
+                    }
+                    else{
+                        tvImHere.setText("До места еще " + String.valueOf(result[0]) + "м.");
+                    }
+
+                    }
+                    catch (JSONException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
     }
 
     //Автосгенерированный код, необязательно для вникания

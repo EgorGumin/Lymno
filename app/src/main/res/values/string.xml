@@ -13,9 +13,8 @@
     <string name="title_activity_quest_finished">QuestFinished</string>
 
     <string name="goToSign">Войти</string>
-    <string name="stageQuestion">Зарегистрироваться</string>
     <string name="signin_button">Войти</string>
-    <string name="reg_btn">Зарегестрироваться</string>
+    <string name="goToReg">Зарегистрироваться</string>
     <string name="button_start_quest">Начать квест</string>
     <string name="receiveCode">Получить код</string>
     <string name="sync">Синхронизирвать</string>

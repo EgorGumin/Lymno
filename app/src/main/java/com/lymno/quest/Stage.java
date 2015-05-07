@@ -10,22 +10,15 @@ public class Stage {
     private int questId;
     private String name;
     private String description;
-    private double x;
-    private double y;
     private String question;
-    private String answer;
 
-    public Stage(int id, int level, int questId, String name, String description, double x,
-                 double y, String question, String answer) {
+    public Stage(int id, int level, int questId, String name, String description, String question) {
         this.id = id;
         this.level = level;
         this.questId = questId;
         this.name = name;
         this.description = description;
-        this.x = x;
-        this.y = y;
         this.question = question;
-        this.answer = answer;
     }
 
     public int getId() {
@@ -48,19 +41,7 @@ public class Stage {
         return description;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
     public String getQuestion() {
         return question;
-    }
-
-    public String getAnswer() {
-        return answer;
     }
 }

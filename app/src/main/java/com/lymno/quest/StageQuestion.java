@@ -2,6 +2,7 @@ package com.lymno.quest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -12,13 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class StageQuestion extends ActionBarActivity implements View.OnClickListener{
 
     EditText usersAnswer;
     TextView stageQuestion;
     String question;
-    String answer;
     Button toAnswer;
 
     int questId;
@@ -33,7 +36,6 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
         questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);
         question = intent.getStringExtra("question");
-        answer = intent.getStringExtra("answer");
         amountStages = intent.getIntExtra("amountStages", 0);
 
         toAnswer = (Button) findViewById(R.id.toAnswer);
@@ -41,33 +43,58 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
 
         stageQuestion = (TextView) findViewById(R.id.stageQuestion);
         stageQuestion.setMovementMethod(new ScrollingMovementMethod());
-        //stageQuestion.setText(question);
+        stageQuestion.setText(question);
         usersAnswer = (EditText) findViewById(R.id.usersAnswer);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.toAnswer) {
-            if (answer.equals(usersAnswer.getText().toString())) {
-                stageQuestion.setText(question + "\nВерно!");
-                Context context = v.getContext();
-                if (stageLevel == amountStages) {
-                    Intent finishedQuestIntent = new Intent(context, QuestFinished.class);
-                    context.startActivity(finishedQuestIntent);
-                }
-                else{
-                    Intent stagePlaceIntent = new Intent(context, StagePlace.class);
-                    stagePlaceIntent.putExtra("questId", questId);
-                    stagePlaceIntent.putExtra("stageLevel", stageLevel + 1);
-                    stagePlaceIntent.putExtra("amountStages", amountStages);
-                    context.startActivity(stagePlaceIntent);
-                }
+            new CheckAnswer().execute(Request.serverIP + "api/stages/checkAnswer?Level=" + stageLevel +
+                    "&QuestId=" + questId + "&Answer=" + usersAnswer.getText().toString());
+        }
+    }
+
+    public class CheckAnswer extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Request.GET(urls[0]);
+        }
+        protected void onPostExecute(String res) {
+            if (res.equals("[]")){
+                //СРОЧНО ПЕРЕПИСАТЬ
+                stageQuestion.setText("Наверное, произошла ошибка!");
             }
             else{
-                stageQuestion.setText(question + "\nНеправильный ответ!");
+                try {
+                    JSONObject checkResult = new JSONObject(res);
+                    if(checkResult.getString("Result").equals("Success")){
+                        stageQuestion.setText("Вы на месте!");
+                        Context context = StageQuestion.this;
+                        if (stageLevel == amountStages) {
+                            Intent finishedQuestIntent = new Intent(context, QuestFinished.class);
+                            context.startActivity(finishedQuestIntent);
+                        }
+                        else{
+                            Intent stagePlaceIntent = new Intent(context, StagePlace.class);
+                            stagePlaceIntent.putExtra("questId", questId);
+                            stagePlaceIntent.putExtra("stageLevel", stageLevel + 1);
+                            stagePlaceIntent.putExtra("amountStages", amountStages);
+                            context.startActivity(stagePlaceIntent);
+                        }
+                    }
+                    else{
+                        stageQuestion.setText("Неправильно");
+                    }
+
+                }
+                catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
+
 
     //Автосгенерированный код
     @Override
