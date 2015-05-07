@@ -50,7 +50,7 @@
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
             android:background="@drawable/green_button"
-            android:padding="10dp"/>
+            android:padding="5dp"/>
     </LinearLayout>
 
 </LinearLayout>
