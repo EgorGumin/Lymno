@@ -22,7 +22,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send"
+        android:text="@string/button"
         android:id="@+id/button"
         android:textSize="32dp"
         android:layout_centerVertical="true"
@@ -31,7 +31,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to sign page!"
+        android:text="@string/gotosignpage"
         android:id="@+id/gotosignpage"
         android:singleLine="false"
         android:layout_alignParentBottom="true"
@@ -41,7 +41,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go To Cards"
+        android:text="@string/http_btn"
         android:id="@+id/http_btn"
         android:layout_above="@+id/gotosignpage"
         android:layout_alignLeft="@+id/gotosignpage"

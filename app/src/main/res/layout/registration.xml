@@ -10,14 +10,14 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:inputType="textEmailAddress"
-        android:hint="e-mail"
+        android:hint="@string/reg_email"
         android:textSize="20sp"
         android:id="@+id/reg_email"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Зарегистрироваться"
+        android:text="@string/reg_btn"
         android:id="@+id/reg_btn"
         android:longClickable="true"
         android:paddingLeft="70dp"
@@ -39,7 +39,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/reg_password"
-        android:hint="Пароль"
+        android:hint="@string/reg_password"
         android:textSize="20sp"
         android:layout_below="@+id/reg_email"
         android:layout_alignLeft="@+id/reg_email"
@@ -54,7 +54,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/confirm_password"
-        android:hint="Подтвердите пароль"
+        android:hint="@string/confirm_password"
         android:textSize="20sp"
         android:layout_below="@+id/reg_password"
         android:layout_alignLeft="@+id/reg_password"
@@ -111,6 +111,6 @@
         android:layout_alignStart="@+id/gender"
         android:layout_alignRight="@+id/gender"
         android:layout_alignEnd="@+id/gender"
-        android:hint="Ваше имя" />
+        android:hint="@string/gender" />
 
 </RelativeLayout>

@@ -13,7 +13,7 @@ public class SignInOrRegister extends ActionBarActivity implements View.OnClickL
         setContentView(R.layout.sign_in_or_register);
         Button goToSign = (Button) findViewById(R.id.goToSign);
         goToSign.setOnClickListener(this);
-        Button goToReg = (Button) findViewById(R.id.stageQuestion);
+        Button goToReg = (Button) findViewById(R.id.goToReg);
         goToReg.setOnClickListener(this);
     }
 
@@ -25,7 +25,7 @@ public class SignInOrRegister extends ActionBarActivity implements View.OnClickL
                 startActivity(intent);
                 break;
 
-            case R.id.stageQuestion:
+            case R.id.goToReg:
                 Intent regIntent = new Intent(this, Registration.class);
                 startActivity(regIntent);
                 break;

@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Quest</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_quest_info">QuestInfo</string>
+    <string name="title_activity_stage_question">StageQuestion</string>
+    <string name="title_activity_stage_place">StagePlace</string>
+
+    <string name="provider_gps">GPS</string>
+    <string name="provider_network">Network</string>
+    <string name="location_settings">Location settings</string>
+    <string name="title_activity_quest_finished">QuestFinished</string>
+
+    <string name="goToSign">Войти</string>
+    <string name="stageQuestion">Зарегистрироваться</string>
+    <string name="signin_button">Войти</string>
+    <string name="reg_btn">Зарегестрироваться</string>
+    <string name="button_start_quest">Начать квест</string>
+    <string name="receiveCode">Получить код</string>
+    <string name="sync">Синхронизирвать</string>
+    <string name="imHere">Я здесь</string>
+    <string name="toAnswer">Ответить</string>
+    <string name="btnCreate">Обновить</string>
+    <string name="btnClear">Очистить</string>
+
+    <string name="textView">Добро пожаловать! Войдите или зарегестрируйтесь, чтобы решать квесты!</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин или e-mail</string>
+    <string name="gender">Ваше имя</string>
+    <string name="reg_email">e-mail</string>
+    <string name="reg_password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="forgotPass_email">e-mail</string>
+    <string name="placeDescription">Описание места</string>
+    <string name="info">Итоги:</string>
+
+    <string name="button">Отправить</string>
+    <string name="http_btn">К списку квестов</string>
+    <string name="gotosignpage">На главную</string>
+</resources>

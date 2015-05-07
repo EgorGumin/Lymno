@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Описание места"
+        android:text="@string/placeDescription"
         android:id="@+id/placeDescription"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp" />
@@ -46,7 +46,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Я на месте!"
+        android:text="@string/imHere"
         android:id="@+id/imHere"
         android:layout_gravity="center_horizontal"
         android:minHeight="50dp"
