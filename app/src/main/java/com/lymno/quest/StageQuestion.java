@@ -31,7 +31,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stage_question);
+        setContentView(R.layout.stage_question);
         Intent intent = getIntent();
         questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);

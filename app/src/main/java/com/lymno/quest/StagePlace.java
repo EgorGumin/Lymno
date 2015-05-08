@@ -45,7 +45,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stage_place);
+        setContentView(R.layout.stage_place);
         Intent intent = getIntent();
         questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);

@@ -27,15 +27,13 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
 
     // Create new views (invoked by the layout manager)
     @Override
-    public CardsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public CardsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View itemLayoutView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cards_layout, parent, false);
+                .inflate(R.layout.cards_adapter, parent, false);
 
         // create ViewHolder
-        ViewHolder viewHolder = new ViewHolder(itemLayoutView);
-        return viewHolder;
+        return new ViewHolder(itemLayoutView);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -61,8 +59,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
-            QuestName = (TextView) itemLayoutView.findViewById(R.id.recycler_quest_name);
-            QuestDescription = (TextView) itemLayoutView.findViewById(R.id.recycler_quest_description);
+            QuestName = (TextView) itemLayoutView.findViewById(R.id.tvCardQuestName);
+            QuestDescription = (TextView) itemLayoutView.findViewById(R.id.tvCardDescription);
             //imgViewIcon = (ImageView) itemLayoutView.findViewById(R.id.item_icon);
             itemLayoutView.setOnClickListener(this);
         }

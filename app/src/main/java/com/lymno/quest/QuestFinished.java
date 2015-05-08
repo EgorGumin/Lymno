@@ -18,7 +18,7 @@ public class QuestFinished extends ActionBarActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quest_finished);
+        setContentView(R.layout.quest_finished);
         info = (TextView) findViewById(R.id.info);
         info.setText("Очень скоро мы будем считать и выводить статистику квестов.");
 

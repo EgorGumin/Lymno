@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button"
         android:id="@+id/button"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
