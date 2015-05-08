@@ -34,8 +34,6 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     Location lastGPS;
     Location lastLocation;
     private Stage stage;
-    float[] result;
-    float radius = 100;
 
     int questId;
     int stageLevel;
@@ -52,8 +50,6 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);
         amountStages = intent.getIntExtra("amountStages", 0);
-        result = new float [10];
-        result[0] = radius*1000;
         new GetStage().execute(Request.serverIP + "api/stages/getby?QuestId=" + questId  +
                 "&Level=" + stageLevel);
 
@@ -228,7 +224,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
                         context.startActivity(stageQuestionIntent);
                     }
                     else{
-                        tvImHere.setText("До места еще " + String.valueOf(result[0]) + "м.");
+                        tvImHere.setText("Вы ошиблись с местом.");
                     }
 
                     }

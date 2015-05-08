@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:text="@string/sync"
+        android:textColor="@color/white"
         android:id="@+id/sync"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/green_button"
