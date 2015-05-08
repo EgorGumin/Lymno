@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/imHere"
+        android:textColor="@color/white"
         android:id="@+id/imHere"
         android:layout_gravity="center_horizontal"
         android:minHeight="50dp"
