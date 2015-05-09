@@ -26,7 +26,7 @@
 
     <string name="textView">Welcome! Login or register to begin your quests!</string>
     <string name="password">Password</string>
-    <string name="login">Login or e-mail</string>
+    <string name="login">E-mail or login</string>
     <string name="gender">Your name</string>
     <string name="reg_email">e-mail</string>
     <string name="reg_password">Password</string>
