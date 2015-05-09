@@ -11,13 +11,12 @@
         android:layout_marginBottom="360dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:id="@+id/signin_panel"
-        >
+        android:id="@+id/signin_panel">
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/login" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+            android:id="@+id/login"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -29,16 +28,14 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/password" android:layout_below="@+id/login" android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp" android:selectAllOnFocus="true"
+            android:id="@+id/password"
+            android:layout_marginTop="0dp"
+            android:selectAllOnFocus="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:hint="@string/password"
             android:textSize="20sp" />
     </LinearLayout>
-
-
-    />
 
     <Button
         android:layout_width="wrap_content"
@@ -59,14 +56,12 @@
         android:layout_height="wrap_content"
         android:text="@string/forgot_pass"
         android:id="@+id/forgot_pass"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#ff5db0ff"
         android:singleLine="false"
-        android:phoneNumber="false"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
         android:layout_below="@+id/signin_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
-
 </RelativeLayout>

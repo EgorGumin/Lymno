@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Description is loading..."
         android:id="@+id/questDescription"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,8 +35,6 @@
         android:text="@string/button_start_quest"
         android:textColor="@color/white"
         android:id="@+id/button_start_quest"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/green_button"
         android:padding="10dp"
         android:layout_gravity="center_horizontal"

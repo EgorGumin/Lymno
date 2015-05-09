@@ -71,9 +71,6 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
                 Toast.makeText(this, allQuery, Toast.LENGTH_LONG).show();
                 new Register().execute(allQuery);
                 break;
-
-            default:
-                break;
         }
     }
 

@@ -4,27 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp">
-    <TextView
-        android:id="@+id/tvTitleGPS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/provider_gps"
-        android:textSize="30sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tvLocationGPS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp">
-    </TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="No data"
-        android:id="@+id/distance" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,20 +14,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvImHere"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/imHere"
         android:textColor="@color/white"
-        android:id="@+id/imHere"
+        android:id="@+id/btnImHere"
         android:layout_gravity="center_horizontal"
         android:minHeight="50dp"
         android:minWidth="200dp"

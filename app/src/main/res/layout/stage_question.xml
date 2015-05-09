@@ -7,15 +7,12 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/stageQuestion"
         android:id="@+id/stageQuestion"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-
         android:scrollbars = "vertical"
         android:layout_weight="150"
         android:layout_marginLeft="10dp"
@@ -27,18 +24,20 @@
         android:layout_height="65dp"
         android:layout_gravity="bottom"
         android:gravity="fill_horizontal|bottom"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:padding="0dp">
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/usersAnswer"
-            android:layout_above="@+id/toAnswer"
             android:minWidth="200dp"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="0dp" />
+            android:layout_marginBottom="0dp"
+            android:hint="Введите ответ"
+            android:layout_marginTop="2dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -48,14 +47,12 @@
             android:id="@+id/toAnswer"
             android:minHeight="50dp"
             android:minWidth="200dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_weight="1"
             android:background="@drawable/green_button"
             android:padding="5dp"
             android:layout_marginBottom="2dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp" />
     </LinearLayout>
 
 </LinearLayout>

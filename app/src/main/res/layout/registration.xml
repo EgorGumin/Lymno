@@ -78,9 +78,6 @@
             android:layout_height="wrap_content"
             android:text="Ж"
             android:id="@+id/female"
-            android:layout_below="@+id/confirm_password"
-            android:layout_toLeftOf="@+id/gender"
-            android:layout_toStartOf="@+id/gender"
             android:layout_marginRight="0dp"
             android:layout_marginEnd="0dp"
             android:layout_gravity="center_horizontal" />
@@ -91,9 +88,6 @@
             android:text="М"
             android:id="@+id/male"
             android:checked="false"
-            android:layout_below="@+id/confirm_password"
-            android:layout_toLeftOf="@+id/female"
-            android:layout_toStartOf="@+id/female"
             android:layout_marginRight="0dp"
             android:layout_marginEnd="0dp"
             android:layout_gravity="center_horizontal" />
