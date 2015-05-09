@@ -3,6 +3,7 @@ package com.lymno.quest;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
+        ActionBar supportActionBar = getSupportActionBar();
+        supportActionBar.setLogo(R.mipmap.logo);
         signin_button = (Button) findViewById(R.id.signin_button);
         signin_button.setOnClickListener(this);
         loginEdit = (EditText) findViewById(R.id.login);

@@ -5,10 +5,11 @@
         <item name="actionBarStyle">@style/myActionBar</item>
         <item name="android:icon">@mipmap/logo</item>
         <item name="icon">@mipmap/logo</item>
+        <item name="android:logo">@mipmap/logo</item>
+        <item name="logo">@mipmap/logo</item>
     </style>
     <style name="myActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/green</item>
         <item name="background">@color/green</item>
-
     </style>
 </resources>
