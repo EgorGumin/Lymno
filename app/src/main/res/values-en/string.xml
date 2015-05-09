@@ -24,7 +24,7 @@
     <string name="btnCreate">Update</string>
     <string name="btnClear">Clear</string>
 
-    <string name="textView">Welcome! Log in or register to begin your quests!</string>
+    <string name="textView">Welcome! Login or register to begin your quests!</string>
     <string name="password">Password</string>
     <string name="login">Login or e-mail</string>
     <string name="gender">Your name</string>
