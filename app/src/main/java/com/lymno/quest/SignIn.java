@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,9 +20,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by Colored on 02.04.2015.
@@ -35,7 +36,6 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
     public TextView forgot_pass;
 
     SharedPreferences cache;
-    private String responseString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
 
         cache = getPreferences(MODE_PRIVATE);
         String storedToken = cache.getString("IDToken", "");
-        if (storedToken != "") {
+        if (!storedToken.equals("")) {
             Intent intent = new Intent(this, QuestList.class);
             this.startActivity (intent);
             this.finishActivity (0);
@@ -66,6 +66,12 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
             case R.id.signin_button:
                 String email = loginEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
+                try {
+                    email = URLEncoder.encode(email, "UTF-8");
+                    password = URLEncoder.encode(password, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 String query = "login=" + email + "&password=" + password;
                 String allQuery = Request.serverIP + "api/users/entrance?" +  query;
                 //Toast.makeText(this, allQuery, Toast.LENGTH_LONG).show();
@@ -83,12 +89,16 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
         }
     }
 
+    Handler toastHandler = new Handler();
+    Runnable toastRunnable = new Runnable() {public void run() {Toast.makeText(SignIn.this,"Неверный пароль или ошибка", Toast.LENGTH_LONG).show();}};
+
     private class SignInRequest extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
             String urlString = params[0];
             String res = "";
-            InputStream responseStream = null;
+            String responseString;
+            InputStream responseStream;
 
             try {
                 URL url = new URL(urlString);
@@ -120,7 +130,7 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(getBaseContext(), "Неверный пароль или ошибка", Toast.LENGTH_LONG).show();
+                    toastHandler.post(toastRunnable);
                 }
             } catch (JSONException ex) {
                 ex.printStackTrace();
