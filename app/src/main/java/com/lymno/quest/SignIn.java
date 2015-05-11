@@ -1,9 +1,11 @@
 package com.lymno.quest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -83,6 +85,9 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
         }
     }
 
+    Handler toastHandler = new Handler();
+    Runnable toastRunnable = new Runnable() {public void run() {Toast.makeText(SignIn.this,"Неверный пароль или ошибка", Toast.LENGTH_LONG).show();}};
+
     private class SignInRequest extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -120,7 +125,7 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(getBaseContext(), "Неверный пароль или ошибка", Toast.LENGTH_LONG).show();
+                    toastHandler.post(toastRunnable);
                 }
             } catch (JSONException ex) {
                 ex.printStackTrace();
