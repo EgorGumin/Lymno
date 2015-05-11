@@ -24,7 +24,7 @@
     <string name="btnCreate">Обновить</string>
     <string name="btnClear">Очистить</string>
 
-    <string name="textView">Добро пожаловать! Войдите или зарегестрируйтесь, чтобы решать квесты!</string>
+    <string name="textView">Добро пожаловать!\nВойдите или зарегестрируйтесь, чтобы решать квесты!</string>
     <string name="password">Пароль</string>
     <string name="login">E-mail или логин</string>
     <string name="gender">Ваше имя</string>

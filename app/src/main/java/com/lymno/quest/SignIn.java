@@ -27,8 +27,6 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setLogo(R.mipmap.logo);
         signin_button = (Button) findViewById(R.id.signin_button);
         signin_button.setOnClickListener(this);
         loginEdit = (EditText) findViewById(R.id.login);

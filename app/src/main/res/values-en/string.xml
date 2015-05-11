@@ -24,7 +24,7 @@
     <string name="btnCreate">Update</string>
     <string name="btnClear">Clear</string>
 
-    <string name="textView">Welcome! Login or register to begin your quests!</string>
+    <string name="textView">Welcome!\nPlease, login or register to begin your quests!</string>
     <string name="password">Password</string>
     <string name="login">E-mail or login</string>
     <string name="gender">Your name</string>
@@ -40,4 +40,6 @@
     <string name="button">Send</string>
     <string name="http_btn">Go to cards</string>
     <string name="gotosignpage">Go to sign page</string>
+
+    <string name="Item1">Item 1</string>
 </resources>

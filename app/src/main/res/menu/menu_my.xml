@@ -1,6 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MyActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MyActivity">
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never">
+    </item>
+    <item android:id="@+id/Item1"
+        app:showAsAction="always"
+        android:title="@string/Item1"
+        android:icon="@drawable/ghost_frame_push">
+    </item>
+
 </menu>
