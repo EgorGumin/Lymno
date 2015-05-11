@@ -31,6 +31,7 @@ public class QuestList extends ActionBarActivity implements View.OnClickListener
 
     int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

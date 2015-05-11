@@ -40,4 +40,6 @@
     <string name="button">Send</string>
     <string name="http_btn">Go to cards</string>
     <string name="gotosignpage">Go to sign page</string>
+
+    <string name="Item1">Item1</string>
 </resources>

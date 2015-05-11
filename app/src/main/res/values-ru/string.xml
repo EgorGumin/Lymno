@@ -40,4 +40,8 @@
     <string name="button">Отправить</string>
     <string name="http_btn">К списку квестов</string>
     <string name="gotosignpage">На главную</string>
+
+    <string name="Item1">Item1</string>
+
+    <string name="refresh">Обновить</string>
 </resources>
