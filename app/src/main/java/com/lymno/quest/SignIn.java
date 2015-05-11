@@ -1,6 +1,7 @@
 package com.lymno.quest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -14,6 +15,15 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Created by Colored on 02.04.2015.
  */
@@ -23,9 +33,22 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
     public EditText passwordEdit;
     public TextView register;
     public TextView forgot_pass;
+
+    SharedPreferences cache;
+    private String responseString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        cache = getPreferences(MODE_PRIVATE);
+        String storedToken = cache.getString("IDToken", "");
+        if (storedToken != "") {
+            Intent intent = new Intent(this, QuestList.class);
+            this.startActivity (intent);
+            this.finishActivity (0);
+        }
+
         setContentView(R.layout.sign_in);
         signin_button = (Button) findViewById(R.id.signin_button);
         signin_button.setOnClickListener(this);
@@ -60,7 +83,58 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
         }
     }
 
-    public class SignInRequest extends AsyncTask<String, Void, String> {
+    private class SignInRequest extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String urlString = params[0];
+            String res = "";
+            InputStream responseStream = null;
+
+            try {
+                URL url = new URL(urlString);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                responseStream = new BufferedInputStream(urlConnection.getInputStream());
+
+                BufferedReader responseReader = new BufferedReader(new InputStreamReader(responseStream));
+                responseString = responseReader.readLine();
+                responseStream.close();
+
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+                return ex.getMessage();
+            }
+
+            try {
+                JSONObject JSONSignInResponse = new JSONObject(responseString);
+                String responseResult = JSONSignInResponse.getString("Result");
+                String responseMethod = JSONSignInResponse.getString("Function");
+
+                if ("entrance Success".equals(responseMethod + " " + responseResult)) {
+
+                    cache = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor ed = cache.edit();
+                    ed.putString("IDToken", "sometokenvaluehere");
+                    ed.apply();
+
+                    Intent intent = new Intent(getBaseContext(), QuestList.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getBaseContext(), "Неверный пароль или ошибка", Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+
+            return res;
+        }
+
+        protected void onPostExecute(String result) {
+
+        }
+    }
+
+    public class SignInRequest1 extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             return Request.GET(urls[0]);
@@ -75,6 +149,12 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
 
                 //emailEdit.setText(method + result);
                 if ("entrance Success".equals(method +" "+ result)) {
+
+                    cache = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor ed = cache.edit();
+                    ed.putString("ID", "sometokenvaluehere");
+                    ed.commit();
+
                     Intent intent = new Intent(getBaseContext(), QuestList.class);
                     startActivity(intent);
                 }
