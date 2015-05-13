@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 /**
- * Created by Роман on 13.05.2015.
+ * Created by Roman Belkov on 13.05.2015.
  */
 public class QuestsDataBase {
     static final String NAME = "LymnoQuestsDataBase";
@@ -45,8 +45,7 @@ public class QuestsDataBase {
 
         if (cursor.moveToFirst())
         {
-            do
-            {
+            while (!cursor.isAfterLast()) {
                 String questName = cursor.getString(cursor.getColumnIndex(QUEST_NAME));
                 int id = cursor.getInt(cursor.getColumnIndex(ID));
                 String description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
@@ -59,8 +58,9 @@ public class QuestsDataBase {
                 int averageTime = cursor.getInt(cursor.getColumnIndex(AVERAGE_TIME));
 
                 quests.add(new Quest(id, questName, description, authorId, startTime, amountStages, x, y, length, averageTime));
+
+                cursor.moveToNext();
             }
-            while (cursor.moveToNext());
         }
 
         cursor.close();
@@ -89,13 +89,13 @@ public class QuestsDataBase {
         dbHelper.close();
     }
 
-    public void recreateDataBase(Quest[] quests)
+    public void recreateDataBase(ArrayList<Quest> quests)
     {
         deleteDataBase();
         dbHelper = new DBHelper(context, NAME);
-        for (int i = 0; i < quests.length; ++i)
+        for (int i = 0; i < quests.size(); ++i)
         {
-            addQuest(quests[i]);
+            addQuest(quests.get(i));
         }
         dbHelper.close();
     }

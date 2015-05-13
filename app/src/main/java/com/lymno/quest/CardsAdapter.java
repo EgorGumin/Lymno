@@ -21,8 +21,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
 
     private ArrayList<Quest> questsData; // these are the things we want to display
 
-    public CardsAdapter(ArrayList<Quest> questsData) {
-        this.questsData = questsData;
+    public CardsAdapter(ArrayList<Quest> quests) {
+        this.questsData = quests;
     }
 
     // Create new views (invoked by the layout manager)
@@ -48,6 +48,11 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
         viewHolder.QuestName.setText(questsDataPos.getName());
         viewHolder.QuestDescription.setText(questsDataPos.getDescription());
         //viewHolder.imgViewIcon.setImageResource(questsData[position].getImageUrl());
+    }
+
+    public void updateItems (ArrayList<Quest> items) {
+        this.questsData = items;
+        notifyDataSetChanged();
     }
 
     // inner class to hold a reference to each item of RecyclerView
