@@ -12,6 +12,7 @@
         android:theme="@style/CustomActionBar" >
         <activity
             android:name=".MyActivity"
+            android:theme="@android:style/Theme.NoDisplay"
             android:label="Отладка" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

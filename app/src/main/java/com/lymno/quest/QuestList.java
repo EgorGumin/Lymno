@@ -1,6 +1,8 @@
 package com.lymno.quest;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,9 +11,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +46,7 @@ public class QuestList extends ActionBarActivity {
         setContentView(R.layout.quests_list);
 
         refreshLayout = (SwipeRefreshLayout) findViewById(R.id.quests_list_swipe_refresh_layout);
-        refreshLayout.setColorSchemeColors(Color.GREEN);
+        refreshLayout.setColorSchemeColors(Color.parseColor("#4caf50"));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -96,5 +101,33 @@ public class QuestList extends ActionBarActivity {
             mAdapter.updateItems(db.getQuests());
             refreshLayout.setRefreshing(false);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_quest_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_log_out) {
+            SharedPreferences cache = getSharedPreferences("cache", MODE_PRIVATE);
+            SharedPreferences.Editor ed = cache.edit();
+            ed.putString("IDToken", "");
+            ed.apply();
+            Context questList = QuestList.this;
+            Intent singIntent = new Intent(questList, SignInOrRegister.class);
+            questList.startActivity(singIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -2,6 +2,7 @@ package com.lymno.quest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -22,6 +23,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
     EditText usersAnswer;
     TextView stageQuestion;
     String question;
+    String storedToken;
     Button toAnswer;
 
     int questId;
@@ -38,6 +40,9 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
         question = intent.getStringExtra("question");
         amountStages = intent.getIntExtra("amountStages", 0);
 
+        SharedPreferences cache = getSharedPreferences("cache", MODE_PRIVATE);
+        storedToken = cache.getString("IDToken", "");
+
         toAnswer = (Button) findViewById(R.id.toAnswer);
         toAnswer.setOnClickListener(this);
 
@@ -51,7 +56,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
     public void onClick(View v) {
         if (v.getId() == R.id.toAnswer) {
             new CheckAnswer().execute(Request.serverIP + "api/stages/checkAnswer?Level=" + stageLevel +
-                    "&QuestId=" + questId + "&Answer=" + usersAnswer.getText().toString());
+                    "&QuestId=" + questId  + "&Token=" + storedToken + "&Answer=" + usersAnswer.getText().toString());
         }
     }
 

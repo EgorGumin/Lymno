@@ -2,6 +2,7 @@ package com.lymno.quest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -34,6 +35,8 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
     private int amountStages;
     private int secondsToUpdateGPS = 60;
 
+    private String storedToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,9 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         questId = intent.getIntExtra("questId", 0);
         stageLevel = intent.getIntExtra("stageLevel", 0);
         amountStages = intent.getIntExtra("amountStages", 0);
+
+        SharedPreferences cache = getSharedPreferences("cache", MODE_PRIVATE);
+        storedToken = cache.getString("IDToken", "");
 
         new GetStage().execute(Request.serverIP + "api/stages/getby?QuestId=" + questId  +
                 "&Level=" + stageLevel);
@@ -122,7 +128,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
             case R.id.btnImHere:
                 if (isProviderEnabled() && (lastLocation != null)) {
                     new CheckPosition().execute(Request.serverIP + "api/stages/checkPosition?Level=" + stage.getLevel() +
-                            "&QuestId=" + questId + "&X=" + lastLocation.getLatitude() + "&Y=" + lastLocation.getLongitude());
+                            "&QuestId=" + questId  + "&Token=" + storedToken + "&X=" + lastLocation.getLatitude() + "&Y=" + lastLocation.getLongitude());
                 }
         }
     }

@@ -26,19 +26,13 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
     public TextView forgot_pass;
 
     private final String magicRequest = "api/users/entrance?";
+
     SharedPreferences cache;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        cache = getPreferences(MODE_PRIVATE);
-        String storedToken = cache.getString("IDToken", "");
-        if (!storedToken.equals("")) {
-            Intent intent = new Intent(this, QuestList.class);
-            this.startActivity (intent);
-            this.finishActivity (0);
-        }
 
         setContentView(R.layout.sign_in);
         signin_button = (Button) findViewById(R.id.signin_button);
@@ -85,18 +79,19 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
                 String responseResult = JSONSignInResponse.getString("Result");
                 String responseMethod = JSONSignInResponse.getString("Function");
 
-                if ("entrance Success".equals(responseMethod + " " + responseResult)) {
-
-                    cache = getPreferences(MODE_PRIVATE);
+                if ("entrance Fail".equals(responseMethod + " " + responseResult)) {
+                    Toast.makeText(SignIn.this,"Неверный пароль или ошибка", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    cache = getSharedPreferences("cache", MODE_PRIVATE);
                     SharedPreferences.Editor ed = cache.edit();
-                    ed.putString("IDToken", "sometokenvaluehere");
+                    ed.putString("IDToken", responseResult);
                     ed.apply();
+
+                    Toast.makeText(SignIn.this,responseResult, Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(getBaseContext(), QuestList.class);
                     startActivity(intent);
-                }
-                else {
-                    Toast.makeText(SignIn.this,"Неверный пароль или ошибка", Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException ex) {
                 ex.printStackTrace();

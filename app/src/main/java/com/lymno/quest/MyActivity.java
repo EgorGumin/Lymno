@@ -1,6 +1,9 @@
 package com.lymno.quest;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
-public class MyActivity extends ActionBarActivity implements View.OnClickListener {
+public class MyActivity extends Activity{
     private EditText myText;
     private Button send;
     Button http_btn;
@@ -21,6 +24,22 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences cache = getSharedPreferences("cache", MODE_PRIVATE);
+        String storedToken = cache.getString("IDToken", "");
+
+
+        Context context = MyActivity.this;
+        if (storedToken.equals("")) {
+            Intent singIntent = new Intent(context, SignInOrRegister.class);
+            context.startActivity(singIntent);
+            this.finishActivity (0);
+        }
+        else{
+            Intent intent = new Intent(this, QuestList.class);
+            this.startActivity (intent);
+            this.finishActivity (0);
+        }
+        /*
         setContentView(R.layout.main);
         myText = (EditText) findViewById(R.id.editText);
         myText.setText("home/api/gui/quest/all");
@@ -34,6 +53,8 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
         gotosignpage = (Button) findViewById(R.id.gotosignpage);
         gotosignpage.setOnClickListener(this);
 
+        */
+        /*
 
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -51,9 +72,10 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
                 Toast.makeText(getBaseContext(), sndtest, Toast.LENGTH_LONG).show();
             }
         });
+        */
     }
 
-
+    /*
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -96,4 +118,5 @@ public class MyActivity extends ActionBarActivity implements View.OnClickListene
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }
