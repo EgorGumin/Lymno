@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 
 public class Request {
 
-    public static String serverIP = "http://simpleas123.azurewebsites.net/"; //217.197.4.107
+    public static String serverIP = "http://lymnologic.azurewebsites.net/"; //217.197.4.107
     public static String result;
     public static String resultInput = "fstinit";
 

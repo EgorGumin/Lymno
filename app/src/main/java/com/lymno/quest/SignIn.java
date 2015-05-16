@@ -88,8 +88,6 @@ public class SignIn extends ActionBarActivity implements View.OnClickListener{
                     ed.putString("IDToken", responseResult);
                     ed.apply();
 
-                    Toast.makeText(SignIn.this,responseResult, Toast.LENGTH_LONG).show();
-
                     Intent intent = new Intent(getBaseContext(), QuestList.class);
                     startActivity(intent);
                 }

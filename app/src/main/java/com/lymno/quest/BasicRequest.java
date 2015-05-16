@@ -16,7 +16,7 @@ import java.net.URL;
 
 public class BasicRequest extends AsyncTask<String, String, String> {
 
-    private final String serverIP = "http://simpleas123.azurewebsites.net/";
+    private final String serverIP = "http://lymnologic.azurewebsites.net/";
 
     String urlString;
     String resultingJSONString;

@@ -7,6 +7,7 @@
         <item name="icon">@mipmap/logo</item>
         <item name="android:logo">@mipmap/logo</item>
         <item name="logo">@mipmap/logo</item>
+
     </style>
     <style name="myActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/green</item>
