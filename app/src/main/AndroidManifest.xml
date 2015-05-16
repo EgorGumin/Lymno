@@ -13,7 +13,7 @@
         <activity
             android:name=".MyActivity"
             android:theme="@android:style/Theme.NoDisplay"
-            android:label="Отладка" >
+            android:label="Lymno" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
