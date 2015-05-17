@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +93,7 @@ public class StageQuestion extends ActionBarActivity implements View.OnClickList
                         }
                     }
                     else{
-                        stageQuestion.setText("Неправильно");
+                        Toast.makeText(StageQuestion.this, "Неправильный ответ!", Toast.LENGTH_SHORT).show();
                     }
 
                 }
