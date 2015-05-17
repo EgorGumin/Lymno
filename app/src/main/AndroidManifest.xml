@@ -12,21 +12,27 @@
         android:theme="@style/CustomActionBar" >
         <activity
             android:name=".MyActivity"
+            android:label="Lymno"
             android:theme="@android:style/Theme.NoDisplay"
-            android:label="Lymno" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".SignInOrRegister"
+            android:noHistory="true"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".SignIn"
-            android:label="@string/app_name" >
+            android:noHistory="true"
+            android:label="@string/app_name"
+            android:parentActivityName=".SignInOrRegister" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lymno.quest.SignInOrRegister"/>
         </activity>
         <activity
             android:name=".ForgotPassword"
@@ -34,7 +40,12 @@
         </activity>
         <activity
             android:name=".Registration"
-            android:label="@string/app_name" >
+            android:noHistory="true"
+            android:label="@string/app_name"
+            android:parentActivityName=".SignInOrRegister" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lymno.quest.SignInOrRegister"/>
         </activity>
         <activity
             android:name=".QuestList"
@@ -46,18 +57,21 @@
             android:parentActivityName=".QuestList" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lymno.quest.QuestList" />
+                android:value="com.lymno.quest.QuestList"/>
         </activity>
         <activity
             android:name=".StageQuestion"
+            android:noHistory="true"
             android:label="@string/title_activity_stage_question" >
         </activity>
         <activity
             android:name=".StagePlace"
+            android:noHistory="true"
             android:label="@string/title_activity_stage_place" >
         </activity>
         <activity
             android:name=".QuestFinished"
+            android:noHistory="true"
             android:label="@string/title_activity_quest_finished" >
         </activity>
     </application>

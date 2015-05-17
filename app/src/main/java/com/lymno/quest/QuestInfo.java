@@ -24,8 +24,6 @@ public class QuestInfo extends ActionBarActivity implements View.OnClickListener
     TextView questLengthTV;
     TextView questAmountStagesTV;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

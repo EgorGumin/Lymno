@@ -126,6 +126,7 @@ public class QuestList extends ActionBarActivity {
             Context questList = QuestList.this;
             Intent singIntent = new Intent(questList, SignInOrRegister.class);
             questList.startActivity(singIntent);
+            this.finishActivity(0);
         }
 
         return super.onOptionsItemSelected(item);

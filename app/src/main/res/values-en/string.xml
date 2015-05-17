@@ -40,4 +40,8 @@
     <string name="button">Send</string>
     <string name="http_btn">Go to cards</string>
     <string name="gotosignpage">Go to sign page</string>
+
+    <string name="backBtnPressed">Are you sure you want to end this quest?</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
 </resources>

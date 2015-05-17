@@ -43,4 +43,7 @@
     <string name="gotosignpage">Go to sign page</string>
 
     <string name="Item1">Item1</string>
+    <string name="backBtnPressed">Are you sure you want to end this quest?</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
 </resources>
