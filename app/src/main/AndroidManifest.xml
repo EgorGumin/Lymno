@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".ForgotPassword"
-            android:label="Восстановление пароля" >
+            android:label="@string/forgotPassword" >
         </activity>
         <activity
             android:name=".Registration"
@@ -49,7 +49,7 @@
         </activity>
         <activity
             android:name=".QuestList"
-            android:label="Квесты" >
+            android:label="@string/title_activity_quest_list" >
         </activity>
         <activity
             android:name=".QuestInfo"

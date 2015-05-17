@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quest</string>
+    <string name="app_name">Lymno</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -7,11 +7,13 @@
     <string name="title_activity_quest_info">QuestInfo</string>
     <string name="title_activity_stage_question">StageQuestion</string>
     <string name="title_activity_stage_place">StagePlace</string>
+    <string name="title_activity_forgot_password">Forgot password</string>
+    <string name="title_activity_quest_list">Quests</string>
+    <string name="title_activity_quest_finished">Stats</string>
 
     <string name="provider_gps">GPS</string>
     <string name="provider_network">Network</string>
     <string name="location_settings">Location settings</string>
-    <string name="title_activity_quest_finished">QuestFinished</string>
 
     <string name="goToSign">Sign in</string>
     <string name="goToReg">Register</string>
@@ -46,4 +48,5 @@
     <string name="backBtnPressed">Are you sure you want to end this quest?</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
+
 </resources>
