@@ -130,7 +130,7 @@ public class StagePlace extends ActionBarActivity implements View.OnClickListene
         switch (view.getId()) {
             case R.id.btnImHere:
                 if (isProviderEnabled() && (lastLocation != null)) {
-                    new CheckPosition().execute(Request.serverIP + "api/stages/checkPosition?Level=" + stage.getLevel() +
+                    new CheckPosition().execute(Request.serverIP + "api/stages/checkPosition?Level=" + stageLevel +
                             "&QuestId=" + questId  + "&Token=" + storedToken + "&X=" + lastLocation.getLatitude() + "&Y=" + lastLocation.getLongitude());
                 }
         }
