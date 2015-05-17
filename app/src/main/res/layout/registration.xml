@@ -1,110 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:inputType="textEmailAddress"
-        android:hint="@string/reg_email"
-        android:textSize="20sp"
-        android:id="@+id/reg_email"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="11dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/reg_email"
+            android:textSize="20sp"
+            android:id="@+id/reg_email"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/reg_password"
+            android:hint="@string/reg_password"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/confirm_password"
+            android:hint="@string/confirm_password"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/name"
+            android:hint="@string/gender"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/reg_btn"
         android:id="@+id/reg_btn"
         android:longClickable="true"
-        android:paddingLeft="70dp"
-        android:paddingRight="70dp"
-        android:paddingTop="25dp"
-        android:paddingBottom="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/gender"
-        android:layout_alignStart="@+id/gender"
-        android:layout_marginBottom="35dp"
-        android:layout_alignRight="@+id/name"
-        android:layout_alignEnd="@+id/name"
+        android:padding="5dp"
         android:minHeight="50dp"
-        android:minWidth="200dp" />
+        android:minWidth="200dp"
+        android:background="@drawable/green_button"
+        android:textColor="@color/white"/>
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/reg_password"
-        android:hint="@string/reg_password"
-        android:textSize="20sp"
-        android:layout_below="@+id/reg_email"
-        android:layout_alignLeft="@+id/reg_email"
-        android:layout_alignStart="@+id/reg_email"
-        android:layout_marginTop="15dp"
-        android:layout_alignRight="@+id/reg_email"
-        android:layout_alignEnd="@+id/reg_email" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/confirm_password"
-        android:hint="@string/confirm_password"
-        android:textSize="20sp"
-        android:layout_below="@+id/reg_password"
-        android:layout_alignLeft="@+id/reg_password"
-        android:layout_alignStart="@+id/reg_password"
-        android:layout_alignRight="@+id/reg_password"
-        android:layout_alignEnd="@+id/reg_password"
-        android:layout_marginTop="15dp" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gender"
-        android:layout_below="@+id/confirm_password"
-        android:layout_alignLeft="@+id/confirm_password"
-        android:layout_alignStart="@+id/confirm_password"
-        android:layout_alignRight="@+id/confirm_password"
-        android:layout_alignEnd="@+id/confirm_password">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ж"
-            android:id="@+id/female"
-            android:layout_marginRight="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_gravity="center_horizontal" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="М"
-            android:id="@+id/male"
-            android:checked="false"
-            android:layout_marginRight="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_gravity="center_horizontal" />
-
-    </RadioGroup>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/name"
-        android:layout_below="@+id/gender"
-        android:layout_alignLeft="@+id/gender"
-        android:layout_alignStart="@+id/gender"
-        android:layout_alignRight="@+id/gender"
-        android:layout_alignEnd="@+id/gender"
-        android:hint="@string/gender" />
-
-</RelativeLayout>
+</LinearLayout>

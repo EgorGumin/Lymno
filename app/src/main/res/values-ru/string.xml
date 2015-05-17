@@ -15,7 +15,7 @@
     <string name="goToSign">Войти</string>
     <string name="goToReg">Зарегистрироваться</string>
     <string name="signin_button">Войти</string>
-    <string name="reg_btn">Зарегестрироваться</string>
+    <string name="reg_btn">Зарегистрироваться</string>
     <string name="button_start_quest">Начать квест</string>
     <string name="receiveCode">Получить код</string>
     <string name="sync">Синхронизировать</string>
@@ -24,14 +24,14 @@
     <string name="btnCreate">Обновить</string>
     <string name="btnClear">Очистить</string>
 
-    <string name="textView">Добро пожаловать!\nВойдите или зарегестрируйтесь, чтобы решать квесты!</string>
+    <string name="textView">Добро пожаловать!\nВойдите или зарегистрируйтесь, чтобы решать квесты!</string>
     <string name="password">Пароль</string>
     <string name="login">E-mail или логин</string>
     <string name="gender">Ваше имя</string>
-    <string name="reg_email">e-mail</string>
+    <string name="reg_email">E-mail</string>
     <string name="reg_password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
-    <string name="forgotPass_email">e-mail</string>
+    <string name="forgotPass_email">E-mail</string>
     <string name="placeDescription">Описание места</string>
     <string name="info">Итоги:</string>
     <string name="stageQuestion">Задание:</string>
@@ -40,8 +40,4 @@
     <string name="button">Отправить</string>
     <string name="http_btn">К списку квестов</string>
     <string name="gotosignpage">На главную</string>
-
-    <string name="Item1">Item1</string>
-
-    <string name="refresh">Обновить</string>
 </resources>

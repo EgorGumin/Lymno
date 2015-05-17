@@ -28,10 +28,10 @@
     <string name="password">Password</string>
     <string name="login">E-mail or login</string>
     <string name="gender">Your name</string>
-    <string name="reg_email">e-mail</string>
+    <string name="reg_email">E-mail</string>
     <string name="reg_password">Password</string>
     <string name="confirm_password">Confirm the password</string>
-    <string name="forgotPass_email">e-mail</string>
+    <string name="forgotPass_email">E-mail</string>
     <string name="placeDescription">Description of place</string>
     <string name="info">Result:</string>
     <string name="stageQuestion">Task:</string>
@@ -40,8 +40,4 @@
     <string name="button">Send</string>
     <string name="http_btn">Go to cards</string>
     <string name="gotosignpage">Go to sign page</string>
-
-    <string name="Item1">Item 1</string>
-
-    <string name="refresh">Refresh</string>
 </resources>

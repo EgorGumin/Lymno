@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:text="@string/signin_button"
         android:id="@+id/signin_button"
+        android:textColor="@color/white"
         android:background="@drawable/green_button"
         android:longClickable="true"
         android:nestedScrollingEnabled="false"

@@ -1,6 +1,7 @@
 package com.lymno.quest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,12 +19,9 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
     EditText passwordEdit;
     EditText confirmPass;
     EditText nicknameEdit;
-    RadioButton male;
-    RadioButton female;
     Button registerBtn;
     String email;
     String password;
-    String gender;
     String nickname;
 
     @Override
@@ -38,10 +36,6 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
 
         registerBtn = (Button) findViewById(R.id.reg_btn);
         registerBtn.setOnClickListener(this);
-
-        female = (RadioButton) findViewById(R.id.female);
-        male = (RadioButton) findViewById(R.id.male);
-        male.setChecked(true);
     }
 
     @Override
@@ -53,10 +47,6 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
                 email = emailEdit.getText().toString();
                 password = passwordEdit.getText().toString();
                 nickname = nicknameEdit.getText().toString();
-                if (female.isChecked())
-                    gender = "true";
-                else
-                    gender = "false";
                 if (email.equals("") || password.equals("") || nickname.equals("")) {
                     Toast.makeText(this, "Заполните все поля!", Toast.LENGTH_LONG).show();
                     break;
@@ -66,9 +56,8 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
                     break;
                 }
 
-                String query = "login=" + email + "&password=" + password + "&nickname=" + nickname + "&gender=" + gender;
+                String query = "login=" + email + "&password=" + password + "&nickname=" + nickname + "&gender=1";
                 String allQuery = Request.serverIP + "api/users/registration?" + query;
-                Toast.makeText(this, allQuery, Toast.LENGTH_LONG).show();
                 new Register().execute(allQuery);
                 break;
         }
@@ -87,12 +76,17 @@ public class Registration extends ActionBarActivity implements View.OnClickListe
                 JSONObject dataJsonObj = new JSONObject(res);
                 result = dataJsonObj.getString("Result");
                 method = dataJsonObj.getString("Function");
-                if ("registration Success".equals(method +" "+ result)) {
-                    Intent intent = new Intent(getBaseContext(), QuestList.class);
-                    startActivity(intent);
+                if ("registration Fail".equals(method +" "+ result)) {
+                    Toast.makeText(getBaseContext(), "Такой логин уже занят или произошла ошибка.", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(getBaseContext(), "Такой логин уже занят или произошла ошибка.", Toast.LENGTH_LONG).show();
+                    SharedPreferences cache = getSharedPreferences("cache", MODE_PRIVATE);
+                    SharedPreferences.Editor ed = cache.edit();
+                    ed.putString("IDToken", result);
+                    ed.apply();
+
+                    Intent intent = new Intent(getBaseContext(), QuestList.class);
+                    startActivity(intent);
                 }
             } catch (JSONException ex) {
                 ex.printStackTrace();
